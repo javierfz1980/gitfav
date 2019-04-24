@@ -1,0 +1,12 @@
+<div class="favourites-wrapper" (click)="gotoFavourites()">
+    <span class="p8 favs">{{ 'app.home.header.favourites' | translate}}</span>
+    <span class="badge badge-purple">
+    <ng-container *ngIf="totalFavourites$ | async as totalFavourites; else NoFavourites">
+        {{ totalFavourites }}
+    </ng-container>
+    <ng-template #NoFavourites>
+        0
+    </ng-template>
+</span>
+</div>
+

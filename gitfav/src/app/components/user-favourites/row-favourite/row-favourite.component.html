@@ -1,0 +1,33 @@
+<div class="row row-wrapper mt10">
+
+    <!-- username -->
+    <div class="username col-1 col-sm-2">
+        {{ user.login }}
+    </div>
+
+    <!-- name -->
+    <div class="name col-1 col-sm-3">
+        {{ user.name }}
+    </div>
+
+    <!-- followers -->
+    <div class="followers col-1 col-sm-1">
+        {{ user.followers }}
+    </div>
+
+    <!-- followers -->
+    <div class="repos col-1 col-sm-1">
+        {{ user.public_repos }}
+    </div>
+
+    <!-- joined -->
+    <div class="repos col-1 col-sm-2">
+        {{ user.created_at | date }}
+    </div>
+
+    <!-- actions -->
+    <div class="remove col-1 col-sm-3">
+        <button class="btn btn-primary btn-sm" (click)="gotouserDetails(user.login)">Details</button>
+        <button class="btn btn-danger btn-sm" (click)="removeFromFavs()">Remove</button>
+    </div>
+</div>

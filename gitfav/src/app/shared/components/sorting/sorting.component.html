@@ -1,0 +1,32 @@
+<div class="clr-row pagination-wrapper" [formGroup]="form">
+
+    <!-- order by -->
+    <div class="col-12 col-sm-3 order-by-wrapper">
+        <span>{{ 'app.home.filters.orderBy' | translate }}: </span>
+        <select clrSelect name="options" [formControlName]="'orderBy'">
+            <option *ngFor="let filter of orderByFilters"
+                    [value]="filter['value']">
+                {{ filter['label'] }}
+            </option>
+        </select>
+    </div>
+
+    <!-- pagination -->
+    <div class="col-12 col-sm-2 order-wrapper">
+        <div class="radio-inline">
+            <input type="radio" id="orderAsc" [formControlName]="'order'" [value]="'asc'">
+            <label for="orderAsc">Asc</label>
+        </div>
+        <div class="radio-inline">
+            <input type="radio" id="orderDesc" [formControlName]="'order'" [value]="'desc'">
+            <label for="orderDesc">Desc</label>
+        </div>
+    </div>
+
+    <!-- pagination -->
+    <div class="col-12 col-sm-7 pagination-wrapper">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+
+</div>
+

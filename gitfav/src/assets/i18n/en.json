@@ -1,0 +1,15 @@
+{
+    "app": {
+        "home": {
+            "noUsers": "No users found... plase try again!",
+            "filters": {
+                "orderBy": "Order by"
+            },
+            "header": {
+                "favourites": "Favourites",
+                "searchPlaceHolder": "Search for users...",
+                "reset": "reset"
+            }
+        }
+    }
+}

@@ -1,0 +1,71 @@
+<ng-container *ngIf="userDetails$ | async as user; else LoadingSpinner">
+
+    <div class="row">
+
+        <div class="col-1 col-sm-2">
+            <img [src]="user.avatar_url" class="card-media-image">
+        </div>
+
+        <div class="col-1 col-sm-10">
+
+            <div class="ml40">
+
+                <favo-git-user-fav [isInFav]="isInFavs"
+                                   [label]="'FAVOURITE: '"
+                                   (favToggle)="favToggle($event, user)" >
+                </favo-git-user-fav>
+
+                <!-- User info -->
+                <div>USERNAME: {{ user.login }}</div>
+
+                <div>FULL NAME: {{ user.name }}</div>
+
+                <div>DATE JOINED: {{ user.created_at | date }}</div>
+
+                <div>PROFILE: <a [href]="user.html_url" target="_blank">{{ user.html_url }}</a> </div>
+
+                <div>FOLLOWERS: {{ user.followers }}</div>
+
+                <div>
+                    REPOS ({{ user.public_repos }}):
+                </div>
+
+                <ng-container *ngIf="this.userRepos$ | async as repos; else LoadingRepos">
+
+                    <!-- Repos pagination only when > 30 -->
+                    <div *ngIf="user.public_repos > 30" class="ml30 mt20">
+                        <pagination-controls (pageChange)="getUserReposByUsernameAndPage(user.login, $event)"></pagination-controls>
+                    </div>
+
+                    <!-- Repos list -->
+                    <div class="ml40">
+                        <ng-container *ngFor="let repo of repos | paginate: { itemsPerPage: currentReposPerPage, currentPage: currentReposPage, totalItems: user.public_repos }">
+                            <div>{{ repo.name }} - <a [href]="repo.html_url" target="_blank">{{ repo.html_url }}</a></div>
+                        </ng-container>
+                    </div>
+
+                    <!-- Repos pagination only when > 30 -->
+                    <div *ngIf="user.public_repos > 30" class="ml30 mt20">
+                        <pagination-controls (pageChange)="getUserReposByUsernameAndPage(user.login, $event)"></pagination-controls>
+                    </div>
+
+                </ng-container>
+
+            </div>
+
+        </div>
+    </div>
+
+</ng-container>
+
+<ng-template #LoadingSpinner>
+    <span class="spinner spinner-lg">
+        Loading...
+    </span>
+</ng-template>
+
+<ng-template #LoadingRepos>
+    <span class="spinner spinner-sm">
+        Loading...
+    </span>
+</ng-template>

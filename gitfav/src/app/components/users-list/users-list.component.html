@@ -1,0 +1,33 @@
+<ng-container *ngIf="!(searchLoading$ | async); else LoadingSpinner">
+
+    <!-- list of users -->
+    <ng-container *ngIf="usersSearchResult$ | async as usersSearchResult">
+        <ng-container *ngIf="usersSearchResult.total_count > 0; else NoResults">
+            <div class="pagination-wrapper">
+                <favo-git-users-sorting></favo-git-users-sorting>
+            </div>
+
+            <div class="clr-row list cards-wrapper">
+                <favo-git-user-card
+                    *ngFor="let user of usersSearchResult.items | paginate: { itemsPerPage: itemsPerPage, currentPage: (currentPage$ | async), totalItems: usersSearchResult.total_count }"
+                    [user]="user">
+                </favo-git-user-card>
+            </div>
+
+            <div class="pagination-wrapper">
+                <favo-git-users-sorting></favo-git-users-sorting>
+            </div>
+        </ng-container>
+    </ng-container>
+
+</ng-container>
+
+<ng-template #LoadingSpinner>
+    <span class="spinner spinner-lg">
+        Loading...
+    </span>
+</ng-template>
+
+<ng-template #NoResults>
+    <h4>{{ 'app.home.noUsers' | translate}}</h4>
+</ng-template>

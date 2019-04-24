@@ -1,0 +1,11 @@
+<div class="search">
+    <label for="search_input">
+        <input #search_input
+               id="search_input"
+               type="text"
+               placeholder="{{ 'app.home.header.searchPlaceHolder' | translate}}">
+    </label>
+    <button class="btn btn-sm"
+            (click)="reset()"
+            [disabled]="inputElRef.nativeElement.value.length === 0">{{ 'app.home.header.reset' | translate }}</button>
+</div>
