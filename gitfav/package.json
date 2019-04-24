@@ -7,13 +7,14 @@
         "build": "ng build",
         "build:prod": "ng build --prod",
         "test": "ng test --code-coverage",
-        "lint": "npm run sass-lint && ng lint",
+        "lint": "npm run html-lint && npm run sass-lint && ng lint",
         "e2e": "ng e2e",
         "test:chrome": "ng test --code-coverage --browsers Chrome",
         "precommit": "npm run lint && npm run test && npm run build:prod",
         "generate-docs": "compodoc -p src/tsconfig.app.json -n 'GitFav App Documentation' -d ./documentation",
         "serve-docs": "compodoc -s src/tsconfig.app.json",
-        "sass-lint": "./node_modules/sass-lint/bin/sass-lint.js -c ./sasslint.json -v -q"
+        "sass-lint": "./node_modules/sass-lint/bin/sass-lint.js -c ./sasslint.json -v -q",
+        "html-lint": "htmlhint --config ./htmllint.json ./src/**/*"
     },
     "private": true,
     "dependencies": {
@@ -51,6 +52,7 @@
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "~8.9.4",
         "codelyzer": "~4.5.0",
+        "htmlhint": "^0.11.0",
         "jasmine-core": "~2.99.1",
         "jasmine-spec-reporter": "~4.2.1",
         "karma": "~3.1.1",
