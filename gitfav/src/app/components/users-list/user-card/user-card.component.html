@@ -1,0 +1,42 @@
+<favo-git-card class="user-card">
+
+    <!-- Header -->
+    <div header>
+        <div class="card-header">
+            {{ user.login }}
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div body>
+        <div class="card-media-block">
+            <img [src]="user.avatar_url" class="card-media-image">
+            <div class="card-media-description">
+                <div class="card-media-title">
+                    Name: {{ user.name}}
+                </div>
+                <div class="card-media-text">
+                    Followers: {{ user.followers}}
+                </div>
+                <div class="card-media-text">
+                    Repos: {{ user.public_repos}}
+                </div>
+            </div>
+        </div>
+        <div class="card-text">
+            Joined on {{ user.created_at | date }}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div footer>
+        <favo-git-user-fav [isInFav]="isInFavs"
+                           [label]="'Favourite'"
+                           (favToggle)="favToggle($event, user)" >
+        </favo-git-user-fav>
+        <span class="button-wrapper">
+            <button class="btn btn-primary btn-sm" (click)="gotoDetails()">Details</button>
+        </span>
+    </div>
+
+</favo-git-card>

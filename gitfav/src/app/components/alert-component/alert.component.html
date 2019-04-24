@@ -1,0 +1,59 @@
+<div class="alert-container" *ngIf="warningList && warningList.length > 0">
+    <clr-alert [clrAlertType]="alertTypes.Warning" [(clrAlertClosed)]="alertClosed">
+        <div clr-alert-item class="alert-item" *ngFor="let message of warningList; let idx = index">
+            <span class="alert-text">
+                {{ message }}
+            </span>
+            <span class="acknowledge-text">
+                <a (click)="removeMessage(idx, warningList)">
+                    Acknowledge
+                </a>
+            </span>
+        </div>
+    </clr-alert>
+</div>
+
+<div class="alert-container" *ngIf="infoList && infoList.length > 0">
+    <clr-alert [clrAlertType]="alertTypes.Info" [(clrAlertClosed)]="alertClosed">
+        <div clr-alert-item class="alert-item" *ngFor="let message of infoList; let idx = index">
+            <span class="alert-text">
+                {{ message }}
+            </span>
+            <span class="acknowledge-text">
+                <a (click)="removeMessage(idx, infoList)">
+                    Acknowledge
+                </a>
+            </span>
+        </div>
+    </clr-alert>
+</div>
+
+<div class="alert-container" *ngIf="dangerList && dangerList.length > 0">
+    <clr-alert [clrAlertType]="alertTypes.Danger" [(clrAlertClosed)]="alertClosed">
+        <div clr-alert-item class="alert-item" *ngFor="let message of dangerList; let idx = index">
+            <span class="alert-text">
+                {{ message }}
+            </span>
+            <span class="acknowledge-text">
+                <a (click)="removeMessage(idx, dangerList)">
+                    Acknowledge
+                </a>
+            </span>
+        </div>
+    </clr-alert>
+</div>
+
+<div class="alert-container" *ngIf="successList && successList.length > 0">
+    <clr-alert [clrAlertType]="alertTypes.Success" [(clrAlertClosed)]="alertClosed">
+        <div clr-alert-item class="alert-item" *ngFor="let message of successList; let idx = index">
+            <span class="alert-text">
+                {{ message }}
+            </span>
+            <span class="acknowledge-text">
+                <a (click)="removeMessage(idx, successList)">
+                    Acknowledge
+                </a>
+            </span>
+        </div>
+    </clr-alert>
+</div>

@@ -1,0 +1,42 @@
+<ng-container *ngIf="usersFavs$ | async as usersFavs; else LoadingSpinner">
+
+    <ng-container *ngIf="usersFavs.length > 0; else NoResults">
+
+        <!-- header -->
+        <div class="row row-wrapper">
+
+            <!-- username -->
+            <div class="username col-1 col-sm-2">USERNAME</div>
+
+            <!-- username -->
+            <div class="name col-1 col-sm-3">NAME</div>
+
+            <!-- followers -->
+            <div class="followers col-1 col-sm-1">FOLLOWERS</div>
+
+            <!-- followers -->
+            <div class="repos col-1 col-sm-1">REPOS</div>
+
+            <!-- joined -->
+            <div class="repos col-1 col-sm-2">JOINED</div>
+
+            <!-- actions -->
+            <div class="remove col-1 col-sm-3">...</div>
+        </div>
+
+        <!-- rows -->
+        <favo-git-row-favourite *ngFor="let user of usersFavs" [user]="user"></favo-git-row-favourite>
+
+    </ng-container>
+
+</ng-container>
+
+<ng-template #LoadingSpinner>
+    <span class="spinner spinner-lg">
+        Loading...
+    </span>
+</ng-template>
+
+<ng-template #NoResults>
+    <h4>No users on favourites... please search for users and start adding to favs</h4>
+</ng-template>
